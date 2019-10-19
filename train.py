@@ -3,6 +3,7 @@ import numpy as np
 from load_data import load_train_data,load_test_data
 from logging import StreamHandler, DEBUG, Formatter, FileHandler, getLogger
 from sklearn.ensemble import GradientBoostingClassifier
+from nan_predict import load_data_nan,nan_data_predict 
 
 DIR = 'log/'
 logger = getLogger( __name__ )
@@ -23,12 +24,14 @@ if __name__ == '__main__' :
     logger.info( 'start' )
 
     train_x, train_y = load_train_data( )
-    train_x = train_x.values
+    nan_train_x,non_nan_train_x = load_data_nan(train_x,'Age')
+    df_x = nan_data_predict(nan_train_x,non_nan_train_x,'Age')
+    df_x = df_x.values
     train_y = train_y.values
-    logger.info( 'train data loaded:{}, {}'.format(train_x.shape, type(train_x) ) )
+    logger.info( 'train data loaded:{}, {}'.format(df_x.shape, train_y.shape ) )
 
     gbrt = GradientBoostingClassifier( random_state=0 )
-    gbrt.fit( train_x, train_y )
+    gbrt.fit( df_x, train_y )
     logger.info( 'gbrt fitted')
 
-    print( 'Accuracy on training set:{.3f}'.format(gbrt.score(train_x, train_y)))
+    print( 'Accuracy on training set:{}'.format(gbrt.score(df_x, train_y)))

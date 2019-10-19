@@ -34,7 +34,7 @@ def load_train_data( ) :
     
     #途中にSurviedがあるので分割して結合し、train_xとtrain_yを作成する
     #不要な列の削除も行う　具体的には名前、チケット番号
-    df_y = df[ [ 'PassengerId', 'Survived' ] ]
+    df_y = df[ [ 'Survived' ] ]
     logger.info( 'train_y created:{}'.format(df_y.shape) )
     df_x = df.drop( ['Survived', 'Name', 'Ticket'], axis=1 )
     logger.info('train_x created:{}'.format(df_x.shape))

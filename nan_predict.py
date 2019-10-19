@@ -1,3 +1,4 @@
+#nan_predictクラス
 #nanカラムを予想するクラスを定義する
 #メソッドはnanが含まれている行と、nanが含まれない行を分けるload_data_nan
 #nanカラムを学習するfit、nanカラムを予測するpredictから構成される
