@@ -52,6 +52,10 @@ for sum in nan_test :
         print('nan column:{} sum:{} share:{:.2%}'.format(nan_test.index[i],nan_test[i],nan_test[i] / df_test.shape[0]))
     i += 1
 
+print(df_train_x.dtypes)
+print('---')
+print(df_train_y.dtypes)
+
 #Ticketはどんな意味を持つのか調査した
 #print( df_train_x.loc[:]['Ticket'] )
 
